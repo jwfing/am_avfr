@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="ja" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="ja" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="ja">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>开机画面|修改</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style-metro.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/themes/brown.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2_metro.css" />
+    <link rel="stylesheet" type="text/css" href="assets/plugins/chosen-bootstrap/chosen/chosen.css" />
+    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-fileupload/bootstrap-fileupload.css" />
+    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link href="assets/plugins/bootstrap-switch/static/stylesheets/bootstrap-switch-metro.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <body class="page-header-fixed page-footer-fixed page-sidebar-fixed">
+        <!-- BEGIN HEADER -->
+        <div class="header navbar navbar-inverse navbar-fixed-top">
+            <!-- BEGIN TOP NAVIGATION BAR -->
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <!-- BEGIN LOGO -->
+                    <a class="brand" href="index.html">
+                        <img src="assets/img/logo.png" alt="logo" />
+                    </a>
+                    <!-- END LOGO -->
+                    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                    <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                        <img src="assets/img/menu-toggler.png" alt="" />
+                    </a>
+                    <!-- END RESPONSIVE MENU TOGGLER -->
+                    <!-- BEGIN TOP NAVIGATION MENU -->
+                    <ul class="nav pull-right">
+
+
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <li class="dropdown user">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img id="img" alt="" src="assets/img/mockup/no-image.png" width="29" height="29" />
+                                <span class="username">
+                                    <lable id="titlename">&nbsp</lable>
+                                </span>
+
+                            </a>
+
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                    </ul>
+                    <!-- END TOP NAVIGATION MENU -->
+                </div>
+            </div>
+            <!-- END TOP NAVIGATION BAR -->
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container row-fluid">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar nav-collapse collapse">
+                <!-- BEGIN SIDEBAR MENU -->
+                <ul class="page-sidebar-menu">
+                    <li>
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        <div class="sidebar-toggler hidden-phone"></div>
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                    </li>
+
+                    <form class="sidebar-search">
+                    </form>
+
+                    <li class="active">
+                    <a href="startup_list.html">
+                            <i class="icon-cogs"></i>
+                            <span class="title">开机画面</span>
+                            <span class="selected"></span>
+
+                        </a>
+                    </li>
+                    <li>
+                    <a href="channel_list.html">
+                            <i class="icon-sitemap"></i>
+                        <span class="title">频道类别</span>
+                        </a>
+                    </li>
+
+                    <li>
+                    <a href="video_list.html">
+                            <i class="icon-bookmark-empty"></i>
+                        <span class="title">视频管理</span>
+                        </a>
+                    </li>
+                    <li>
+                    
+                    <li>
+                    <a href="user_list.html">
+                            <i class="icon-briefcase"></i>
+                        <span class="title">用户管理</span>
+                        </a>
+                    </li>
+
+                </ul>
+                <!-- END SIDEBAR MENU -->
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN PAGE -->
+            <div class="page-content">
+                <!-- BEGIN PAGE CONTAINER-->
+                <div class="container-fluid">
+                    <!-- BEGIN PAGE HEADER-->
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <!-- BEGIN STYLE CUSTOMIZER -->
+
+                            <!-- END BEGIN STYLE CUSTOMIZER -->
+                            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                            <h3 class="page-title">管理者  <small>开机画面</small>
+                            </h3>
+                            <ul class="breadcrumb">
+                                <li>
+                                    <i class="icon-home"></i>
+                                    管理者</li>
+                            </ul>
+                            <!-- END PAGE TITLE & BREADCRUMB-->
+                        </div>
+                    </div>
+                    <!-- END PAGE HEADER-->
+                    <!-- BEGIN PAGE CONTENT-->
+                    <div class="row-fluid profile-classic">
+                        <div class="span12">
+                            <div class="portlet box green">
+                                <div class="portlet-title">
+                                    <div class="caption"><i class="icon-reorder"></i>修改</div>
+                                </div>
+                                <div class="portlet-body form">
+                                    <form action="" id="add_form" class="form-horizontal" method="post">
+                                        <div class="alert alert-error hide">
+                                            <button class="close" data-dismiss="alert"></button>
+                                            内容输入有误
+                                        </div>
+                                       
+                                        <div class="control-group">
+                                            <label class="control-label">开始时间<span class="required">*</span></label>
+                                            <div class="controls">
+                                                <div class="input-prepend">
+                                                    <span class="add-on"><i class="icon-calendar"></i></span>
+                                                    <input id="startdate" name="startdate" type="text" class="m-wrap date-picker" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">截至时间<span class="required">*</span></label>
+                                            <div class="controls">
+                                                <div class="input-prepend">
+                                                    <span class="add-on"><i class="icon-calendar"></i></span>
+                                                    <input id="enddate" name="enddate" type="text" class="m-wrap date-picker" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                            <label class="control-label">类型<span class="required">*</span></label>
+                                            <div class="controls">
+                                                <select id="type" class="span6 m-wrap" name="type">
+                                                    <option>静态类型
+                                                    </option>
+                                                    <option>动态类型
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">画像<span class="required">*</span></label>
+                                            <div class="controls">
+                                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                    <div class="fileupload-new thumbnail" style="padding: 0px; max-width: 400px; max-height: 431px; line-height: 20px;">
+                                                        <img id="image" src="assets/img/mockup/avatar.png" alt="" />
+                                                    </div>
+                                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
+                                                    <div>
+                                                        <span class="btn btn-file"><span class="fileupload-new">选择</span>
+                                                            <span class="fileupload-exists">変更</span>
+                                                            <input id="imagefile" type="file" class="default" accept="image/*" /></span>
+                                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">削除</a>
+                                                    </div>
+                                                </div>
+                                                <h4><lable hidden="hidden" id="upimage" style="color:red;">Uploading</lable></h4>
+                                            </div>
+                                            
+                                          
+                                         <!--   <div class="control-group">
+                                                <label class="control-label">描述<span class="required">*</span></label>
+                                                <div class="controls">
+                                                    <textarea id="describe" name="descript" class="span6 m-wrap" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                            -->
+                                        </div>
+
+                                        <div class="form-actions">
+                                            <button id="ok" type="button" class="btn green">确定</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									<a href="startup_list.html">
+                                        <input type="button" class="btn green" value="返回"></a>
+                                        </div>
+
+                                    </form>
+                                    <!-- END FORM-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT-->
+                    </div>
+                    <!-- END PAGE CONTAINER-->
+                </div>
+                <!-- END PAGE -->
+            </div>
+            <!-- END CONTAINER -->
+            <!-- BEGIN FOOTER -->
+            <div class="footer">
+                <div class="footer-inner">
+                    2014 &copy; Appvisor stamp by avos cloud.
+                </div>
+                <div class="footer-tools">
+                    <span class="go-top">
+                        <i class="icon-angle-up"></i>
+                    </span>
+                </div>
+            </div>
+            <!-- END FOOTER -->
+            <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+            <!-- BEGIN CORE PLUGINS -->
+            <script src="assets/plugins/jquery-1.10.1.min.js" type="text/javascript"></script>
+            <script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+            <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+            <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+            <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+            <script src="assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+            <!--[if lt IE 9]>
+	<script src="assets/plugins/excanvas.min.js"></script>
+	<script src="assets/plugins/respond.min.js"></script>  
+	<![endif]-->
+            <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+            <script src="assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+            <script src="assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+            <script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+            <!-- END CORE PLUGINS -->
+            <!-- BEGIN PAGE LEVEL PLUGINS -->
+            <script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+            <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
+            <script type="text/javascript" src="assets/plugins/select2/select2.min.js"></script>
+            <script type="text/javascript" src="assets/plugins/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
+            <script type="text/javascript" src="assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+            <script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+            <script src="assets/plugins/bootstrap-switch/static/js/bootstrap-switch.js" type="text/javascript"></script>
+            <!-- END PAGE LEVEL PLUGINS -->
+            <script src="assets/scripts/app.js"></script>
+            <script src="assets/scripts/form-components/datepicker.js"></script>
+            <script src="assets/scripts/form-validation/startup.js"></script>
+            <script src="https://cn.avoscloud.com/scripts/lib/av-0.4.1.min.js"></script>
+            <script>
+                jQuery(document).ready(function () {
+                    App.init();
+                    App.setAssetsPath('assets');
+                    DateComponents.init();
+                    FormValidation.init();
+					AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
+
+
+ 					var qclass = AV.Object.extend("startup");
+					var query = new AV.Query(qclass);
+					query.equalTo();
+					query.find({
+						success: function(results) {											
+							for (var i = 0; i < results.length; i++) {
+								var object = results[i];
+								$("#startdate").val(object.get("statr_date"));
+								$("#enddate").val(object.get("end_date"));
+								$("#type").val(object.get("type"));
+								$('#image').attr("src", object.get("image").thumbnailURL(400, 431));
+						  
+								break;
+							}
+						},
+						error: function(error) {
+							alert("Error: " + error.code + " " + error.message);
+						}
+					});
+                });
+				
+
+				function clock(){
+					var value = $("#upimage").html();
+					var index = value.indexOf(".");
+					if(index != -1){
+					//alert(value.length);
+						if(value.length - index >= 20){
+							$("#upimage").html(value.substring(0,index));
+						}else{
+							$("#upimage").html(value + ".");
+						}
+					}else{
+						$("#upimage").html(value + ".");
+				   }
+				}
+				
+				$('#ok').live('click', function (e) {
+					e.preventDefault();
+					
+					var avFileImage = null;
+					var startupObj  = null;
+					
+					$("#upimage").attr("hidden",false);
+					self.setInterval("clock()", 500);
+					
+					var sclass = AV.Object.extend("startup");
+					var query = new AV.Query(sclass);
+					query.first({
+						success: function (object) {				 
+							var promise = AV.Promise.as();
+							
+							startupObj = object;
+							
+							return promise;
+						},error: function (object, error) {
+							alert("Error: " + error.code + " " + error.message);
+						}
+					}).then(function() {
+						$("#upimage").html("Uploading(image)");
+						
+						var fImageObj = $("#imagefile")[0];
+						if (fImageObj.files.length > 0) {				
+							var fImage = fImageObj.files[0];
+							avFileImage = new AV.File("image.png", fImage);              
+							return avFileImage.save();
+						}
+					}).then(function() {
+						$("#upimage").html("Save(data)");
+						if(startupObj == null){
+							var sclass = AV.Object.extend("startup");
+							startupObj = new sclass();
+						}
+						
+						if(avFileImage != null){
+							startupObj.set("image", avFileImage);
+						}
+
+								
+						startupObj.set("statr_date", $('#startdate').val());
+						startupObj.set("end_date", $('#enddate').val());
+						startupObj.set("type", $('#type').val());
+						startupObj.save(null, {
+							success: function () {
+								clearInterval();
+								location.href = "startup_list.html";
+							},
+							error: function (error) {
+								clearInterval();
+								alert('Failed to create new object, with error code: ' + error.description);
+							}
+						});					
+						
+					
+					}, function(error) {
+						clearInterval();
+						alert('Failed to create new object, with error code: ' + error.description);
+					});
+				});
+            </script>
+            <!-- END JAVASCRIPTS -->
+    </body>
+    <!-- END BODY -->
+</html>

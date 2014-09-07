@@ -1,0 +1,479 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="ja" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="ja" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="ja">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>上传视频|上传视频</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style-metro.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/themes/brown.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2_metro.css" />
+    <link rel="stylesheet" type="text/css" href="assets/plugins/chosen-bootstrap/chosen/chosen.css" />
+    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-fileupload/bootstrap-fileupload.css" />
+    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" />
+    <link href="assets/plugins/bootstrap-switch/static/stylesheets/bootstrap-switch-metro.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed page-footer-fixed page-sidebar-fixed">
+    <!-- BEGIN HEADER -->
+    <div class="header navbar navbar-inverse navbar-fixed-top">
+        <!-- BEGIN TOP NAVIGATION BAR -->
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <!-- BEGIN LOGO -->
+                <a class="brand" href="index.html">
+                    <img src="assets/img/logo.png" alt="logo" />
+                </a>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                    <img src="assets/img/menu-toggler.png" alt="" />
+                </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <ul class="nav pull-right">
+                    <!-- BEGIN NOTIFICATION DROPDOWN -->
+
+
+                    <li class="dropdown user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <img id="img" alt="" src="assets/img/mockup/no-image.png" width="29" height="29" />
+                            <span class="username">
+                                <lable id="titlename">&nbsp</lable>
+                            </span>
+
+                        </a>
+
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+        </div>
+        <!-- END TOP NAVIGATION BAR -->
+    </div>
+    <!-- END HEADER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container row-fluid">
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar nav-collapse collapse">
+            <!-- BEGIN SIDEBAR MENU -->
+            <ul class="page-sidebar-menu">
+                <li>
+                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                    <div class="sidebar-toggler hidden-phone"></div>
+                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                </li>
+                <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                <form class="sidebar-search">
+                </form>
+                <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                <li>
+                    <a href="startup_list.html">
+                        <i class="icon-cogs"></i>
+                        <span class="title">开机画面</span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="channel_list.html">
+                        <i class="icon-sitemap"></i>
+                        <span class="title">频道类别</span>
+                    </a>
+                </li>
+
+
+                <li class="active">
+                    <a href="video_list.html">
+                        <i class="icon-bookmark-empty"></i>
+                        <span class="title">视频管理</span>
+                        <span class="selected"></span>
+
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="user_list.html">
+                        <i class="icon-briefcase"></i>
+                        <span class="title">用户管理</span>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- END SIDEBAR MENU -->
+        </div>
+        <!-- END SIDEBAR -->
+        <!-- BEGIN PAGE -->
+        <div class="page-content">
+            <!-- BEGIN PAGE CONTAINER-->
+            <div class="container-fluid">
+                <!-- BEGIN PAGE HEADER-->
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                        <h3 class="page-title">管理者 <small>上传视频</small>
+                        </h3>
+
+
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="icon-home"></i>
+                                管理者</li>
+                        </ul>
+                        <!-- END PAGE TITLE & BREADCRUMB-->
+                    </div>
+                </div>
+                <!-- END PAGE HEADER-->
+                <!-- BEGIN PAGE CONTENT-->
+                <div class="row-fluid">
+                    <div class="span12">
+                        <!-- BEGIN VALIDATION STATES-->
+                        <div class="portlet box green">
+                            <div class="portlet-title">
+                                <div class="caption"><i class="icon-reorder"></i>上传视频</div>
+                            </div>
+                            <div class="portlet-body form">
+                                <form action="" id="add_form" class="form-horizontal" method="post">
+                                    <div class="alert alert-error hide">
+                                        <button class="close" data-dismiss="alert"></button>
+                                        您输入的内容不对
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">用户名<span class="required">*</span></label>
+                                        <div class="controls">
+                                            <!--<input id="name" type="text" name="name" data-required="1" class="span6 m-wrap" />-->
+                                            <select id="username" class="span6 m-wrap">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+										<label class="control-label">分类<span class="required">*</span></label>
+										<div class="controls">
+											<select id="type" class="span6 m-wrap">												
+											</select>
+										</div>
+                                    </div>
+									
+                                    <div class="control-group">
+                                        <label class="control-label">封面文件<span class="required">*</span></label>
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                    <div class="fileupload-new thumbnail" style="padding: 0px; max-width: 200px; max-height: 200px; line-height: 20px;">
+                                                        <img src="assets/img/mockup/avatar.png" alt="" />
+                                                    </div>
+                                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
+                                                    <div>
+                                                        <span class="btn btn-file"><span class="fileupload-new">选择</span>
+                                                            <span class="fileupload-exists">変更</span>
+                                                            <input id="image" name="image" type="file" class="default" accept="image/*" /></span>
+
+                                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">削除</a>
+                                                    </div>
+                                                </div>
+                                           </div>
+										</div>
+                                    </div>
+									
+                                    <div class="control-group">
+                                        <label class="control-label">视频<span class="required">*</span></label>
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
+                                                    <div>
+                                                        <span class="btn btn-file"><span class="fileupload-new">选择</span>
+                                                            <span class="fileupload-exists">変更</span>
+                                                            <input id="video" type="file" class="default" accept="*" /></span>
+                                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">削除</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
+									
+                                     <div class="control-group">
+										<label class="control-label">标题<span class="required">*</span></label>
+										<div class="controls">
+											<input id="title" type="text" name="title" data-required="1" class="span6 m-wrap" />
+										</div>
+                                    </div>
+
+									<div class="control-group">
+										<label class="control-label">描述<span class="required">*</span></label>
+										<div class="controls">
+											<textarea id="content" name="descript" class="span6 m-wrap" rows="3"></textarea>
+											<h4><lable hidden="hidden" id="upimage" style="color:red;">Uploading....</lable></h4>
+										</div>
+									</div>
+									<br />
+									<div class="form-actions">
+										<button id="ok" type="button" class="btn green">确定</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+										<a href="video_list.html">
+										<input type="button" class="btn green" value="返回"></a>
+									</div>
+                                </form>
+                                <!-- END FORM-->
+                            </div>
+                        </div>
+                        <!-- END VALIDATION STATES-->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT-->
+            </div>
+            <!-- END PAGE CONTAINER-->
+        </div>
+        <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <div class="footer">
+        <div class="footer-inner">
+            2014 &copy; Appvisor stamp by avos cloud.
+        </div>
+        <div class="footer-tools">
+            <span class="go-top">
+                <i class="icon-angle-up"></i>
+            </span>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="assets/plugins/jquery-1.10.1.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+    <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+	<script src="assets/plugins/excanvas.min.js"></script>
+	<script src="assets/plugins/respond.min.js"></script>  
+	<![endif]-->
+    <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap-daterangepicker/date.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bootstrap-switch/static/js/bootstrap-switch.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <script src="assets/scripts/app.js"></script>
+    <script src="assets/scripts/form-validation/video.js"></script>
+    <script src="https://cn.avoscloud.com/scripts/lib/av-0.4.1.min.js"></script>
+	<script type="text/javascript" src="assets/plugins/qiniu/qiniu.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            App.init();
+            App.setAssetsPath('assets');
+            FormValidation.init();
+			AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
+            
+			var uclass = AV.Object.extend("_User");
+			var uquery = new AV.Query(uclass);
+			uquery.find({
+			  success: function(results) {
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					$("#username").append($("<option value=" +object.id + ">" + object.get('username') + "</option>"));
+				}
+			  },
+			  error: function(error) {
+				alert("Error: " + error.code + " " + error.message);
+			  }
+			});
+
+			var cclass = AV.Object.extend("channel");
+			var cquery = new AV.Query(cclass);
+			cquery.find({
+			  success: function(results) {
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					$("#type").append($("<option value=" +object.id + ">" + object.get('name') + "</option>"));
+				}
+			  },
+			  error: function(error) {
+				alert("Error: " + error.code + " " + error.message);
+			  }
+			});			
+		});
+		
+		function clock(){
+			var value = $("#upimage").html();
+			var index = value.indexOf(".");
+			if(index != -1){
+			//alert(value.length);
+				if(value.length - index >= 20){
+					$("#upimage").html(value.substring(0,index));
+				}else{
+					$("#upimage").html(value + ".");
+				}
+			}else{
+				$("#upimage").html(value + ".");
+		   }
+		}
+
+		$('#ok').live('click', function (e) {
+			var uobj = AV.Object.createWithoutData("_User", $('#username').val());
+			var cobj = AV.Object.createWithoutData("channel", $('#type').val());
+			
+			//save					
+			var fImageObj = $("#image")[0];
+			if (fImageObj.files.length <= 0) {
+				alert("请选择封面图片文件");
+				return;
+			}
+			
+			var fVideoObj = $("#video")[0];						    
+			if (fVideoObj.files.length <= 0) {
+				alert("请选择视频文件");
+				return;
+			}
+		   
+		    $("#upimage").html("Uploading(image)");
+			$("#upimage").attr("hidden",false);
+			self.setInterval("clock()", 500);
+			
+			//upload image
+			var fImage = fImageObj.files[0];
+
+			var avFileImage = new AV.File("image.png", fImage);              
+			avFileImage.save().then(function () {
+				$("#upimage").html("Uploading(video)....");
+				// get upload token
+				var currentTS = (new Date()).valueOf().toString() + "000";
+		        var xmlhttp = {};
+		        if (window.XMLHttpRequest) {
+		            xmlhttp = new XMLHttpRequest();
+		        } else {
+		            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+				xmlhttp.open("POST", "https://cn.avoscloud.com/1/qiniu");
+				xmlhttp.setRequestHeader("X-AVOSCloud-Application-Id", "vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7");
+				xmlhttp.setRequestHeader("X-AVOSCloud-Application-Key", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
+				xmlhttp.setRequestHeader("Accept", "application/json");
+				xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+				var xhrParams = {};
+				xhrParams["key"] = currentTS;
+				xhrParams["name"]=currentTS;
+				xhrParams["__type"]="File";
+				xmlhttp.send(JSON.stringify(xhrParams));
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == xmlhttp.DONE) {
+						var jsonRes = JSON.parse(xmlhttp.responseText);
+						var bucket = jsonRes.bucket;
+						var finalUrl = jsonRes.url;
+						var upToken = jsonRes.token;
+						console.log("bucket:" + bucket + ", url:" + finalUrl + ", token:" + upToken);
+						var fVideo = fVideoObj.files[0]; 
+						var videoBucket = new qiniu.bucket(bucket, {putToken: upToken});
+						videoBucket.putFile(currentTS, fVideo)
+						.then(function(reply){
+							$("#upimage").html("Generate(videodata)....");
+							var metaData = {};
+							metaData["size"] = fVideoObj.files.length; // TODO: please replace with the really file size
+							var avFileVideo = new AV.File.withURL(currentTS, finalUrl, metaData);
+							avFileVideo.save().then(function() {
+								var vclass = AV.Object.extend("video");
+								var videoObj = new vclass();
+								videoObj.set("user_id", uobj);
+								videoObj.set("channel_id", cobj);
+								videoObj.set("image", avFileImage);
+								videoObj.set("video", avFileVideo);
+								videoObj.set("title", $('#title').val());
+								videoObj.set("content", $('#content').val());
+								videoObj.save(null, {
+									success: function (video) {
+										$("#upimage").html("upload successed!");
+										clearInterval();
+										location.href = "video_list.html";
+									},
+									error: function (video, error) {
+										clearInterval();
+										alert('Failed to create new object, with error code: ' + error.description);
+									}
+								});
+							}, function(err) {
+								clearInterval();
+								alert('Failed to create new object, with error code: ' + error.description);
+							});
+						},function(err){
+							clearInterval();
+							console.log("upload failed. error:" + err);
+						});
+					}
+				};
+				xmlhttp.addEventListener("error", function(e){
+					clearInterval();
+					console.log("Error: " + e);
+				}, false);
+								
+				//upload video
+				// var fVideo = fVideoObj.files[0];
+				// var avFileVideo = new AV.File("video.mp4", fVideo);
+				//
+				// $("#upimage").html("Uploading(video)");
+				// avFileVideo.save().then(function () {
+				// 	$("#upimage").html("Uploading(vdata)....");
+				// 	var vclass = AV.Object.extend("video");
+				// 	var videoObj = new vclass();
+				//
+				// 	videoObj.set("user_id", uobj);
+				// 	videoObj.set("channel_id", cobj);
+				// 	videoObj.set("image", avFileImage);
+				// 	videoObj.set("video", avFileVideo);
+				// 	videoObj.set("title", $('#title').val());
+				//                 	videoObj.set("content", $('#content').val());
+				//
+				// 	videoObj.save(null, {
+				// 		success: function (video) {
+				// 			clearInterval();
+				// 			location.href = "video_list.html";
+				// 		},
+				// 		error: function (video, error) {
+				// 			clearInterval();
+				// 			alert('Failed to create new object, with error code: ' + error.description);
+				// 		}
+				// 	});
+				// },function(error) {
+				// 	clearInterval();
+				// 	alert('Failed to create new object, with error code: ' + error.description);
+				// });
+			},function(error) {
+				clearInterval();
+				alert('Failed to create new object, with error code: ' + error.description);
+			});	
+		});
+    </script>
+
+
+    <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
