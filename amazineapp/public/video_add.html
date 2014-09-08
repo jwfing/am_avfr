@@ -380,8 +380,8 @@
 				xmlhttp.setRequestHeader("Accept", "application/json");
 				xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 				var xhrParams = {};
-				xhrParams["key"] = currentTS;
-				xhrParams["name"]=currentTS;
+				xhrParams["key"] = currentTS + ".mp4";
+				xhrParams["name"]=currentTS + ".mp4";
 				xhrParams["__type"]="File";
 				xmlhttp.send(JSON.stringify(xhrParams));
 				xmlhttp.onreadystatechange = function() {
