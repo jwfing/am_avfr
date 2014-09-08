@@ -398,10 +398,7 @@
 							$("#upimage").html("Generate(videodata)....");
 							var metaData = {};
 							metaData["size"] = fVideoObj.files.length; // TODO: please replace with the really file size
-							var avFileVideo = new AV.File.withURL(currentTS, finalUrl, metaData);
-							avFileVideo.set("mime_type", "video/mp4");
-							avFileVideo.set("name", currentTS + ".mp4");
-							avFileVideo.set("metaData", JSON.stringify(metaData));
+							var avFileVideo = new AV.File.withURL(currentTS + ".mp4", finalUrl, metaData);
 							avFileVideo.save().then(function() {
 								var vclass = AV.Object.extend("video");
 								var videoObj = new vclass();
