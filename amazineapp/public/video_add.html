@@ -399,7 +399,7 @@
 							var metaData = {};
 							metaData["size"] = fVideoObj.files.length; // TODO: please replace with the really file size
 							console.log("video file size:" + metaData["size"]);
-							var avFileVideo = new AV.File.withURL(currentTS, finalUrl, metaData);
+							var avFileVideo = new AV.File.withURL(currentTS, finalUrl);
 							avFileVideo.save().then(function() {
 								var vclass = AV.Object.extend("video");
 								var videoObj = new vclass();
