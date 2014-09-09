@@ -11,6 +11,24 @@ app.use(express.bodyParser());    // 读取请求 body 的中间件
 app.get('/hello', function(req, res) {
   res.render('hello', { message: 'Congrats, you just set up your app!' });
 });
+
+app.get('/play/*', function(req, res) {
+  var query = new AV.Query("video");
+  var objId = String(req.params);
+  console.log("query objectId: " + objId);
+  query.get(objId, {
+  success: function(videoObj) {
+      var title = videoObj.get("title");
+      var content = videoObj.get("content");
+      var video = videoObj.get("video");
+      res.render('video_detail', {videoTitle: title, videoContent: content, videoUrl: video["_url"]})
+  },
+  error: function(videoObj, err) {
+      console.log(err);
+      res.render('no_video', {});
+  }});
+});
+
 app.get('/video/*', function(req, res) {
   var vurl = req.params;
   res.render('video_play', { message: vurl });

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="ja" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="ja" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="ja">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>no video</title>
+    
+    <style type="text/css">
+    	body{
+    		background:white;
+			font-family:Georgia, serif;
+    	}
+	    .page-container{
+	    	width: 100%;
+	    	height: 100%;
+	    	margin: auto;
+	    }
+	    .video{
+			margin:0 auto;
+			width:80%;
+			padding-top:30px;
+			padding-bottom:30px;
+	    }
+	    .title{
+			margin:0 auto;
+			width:80%;
+			//background:#8470FF;
+			//text-align:center;
+			
+	    }
+		.gap {
+			width:100%;
+			height: 80px;
+			background:black;
+			margin: auto;
+		}
+		.gap .wrapper {
+			margin: 0 auto;
+			width:80%;
+		}
+	    .content{
+			margin:0 auto;
+			width:80%;
+			background:white;
+			max-height:200px;
+			overflow:hidden;
+			text-overflow:ellipsis;
+	    }
+    </style>
+</head>
+<body>
+	<div class="gap">
+		<div class="wrapper">
+			<a class="brand" href="index.html">
+			    <img src="/assets/img/logo.png" alt="logo">
+			</a>
+			<a href="/?spm=a1z1s.6843761.226669510.1.uDnw2R" title="Amazine(amazine.com) - 高品质视频 发现 分享" data-spm-anchor-id="a1z1s.6843761.226669510.1">Amazine(amazine.com) - 高品质视频 发现 分享</a>
+		</div>
+   </div>
+	
+    <div class="page-container">
+		 <div class="title">
+		 		<h2 id="titleid">视频不存在</h2>
+ 		 </div>
+		 <div class="video">
+		 		<video width="100%" controls='controls' poster='assets/img/mockup/no-image.png' src='' type='video/mp4' id="videoid" autoplay="autoplay"></video>
+ 		 </div>
+		 <div class="content" id="contentid">
+		 		本视频可能已经被作者删除，或者因为敏感内容不适合播放，请见谅。
+ 		 </div>
+ 	</div>
+	
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://cn.avoscloud.com/scripts/lib/av-0.4.1.min.js"></script>
+</body>
+</html>

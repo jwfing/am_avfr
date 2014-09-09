@@ -1,1 +1,1 @@
-Cloud code project for abc. Cloud Code Guide: https://cn.avoscloud.com/docs/cloud_code_guide.html
+Cloud code project for amazineapp. Cloud Code Guide: https://cn.avoscloud.com/docs/cloud_code_guide.html
