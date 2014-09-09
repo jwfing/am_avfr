@@ -356,7 +356,7 @@
 				return;
 			}
 		   
-		    $("#upimage").html("Uploading(image)");
+		        $("#upimage").html("Uploading(image)");
 			$("#upimage").attr("hidden",false);
 			self.setInterval("clock()", 500);
 			
@@ -383,6 +383,8 @@
 				xhrParams["key"] = currentTS;
 				xhrParams["name"]=currentTS;
 				xhrParams["__type"]="File";
+				xhrParams["mime_type"]="video/mp4";
+				xhrParams["metaData"] = {"size": fVideoObj.files[0].size};
 				xmlhttp.send(JSON.stringify(xhrParams));
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == xmlhttp.DONE) {
@@ -390,40 +392,37 @@
 						var bucket = jsonRes.bucket;
 						var finalUrl = jsonRes.url;
 						var upToken = jsonRes.token;
-						console.log("bucket:" + bucket + ", url:" + finalUrl + ", token:" + upToken);
+						var objId = jsonRes.objectId;
+						console.log("bucket:" + bucket + ", url:" + finalUrl + ", token:" + upToken + ", objectId:" + objId);
 						var fVideo = fVideoObj.files[0]; 
 						var videoBucket = new qiniu.bucket(bucket, {putToken: upToken});
 						videoBucket.putFile(currentTS, fVideo)
 						.then(function(reply){
 							$("#upimage").html("Generate(videodata)....");
-							var metaData = {};
-							metaData["size"] = fVideoObj.files.length; // TODO: please replace with the really file size
-							console.log("video file size:" + metaData["size"]);
-							var avFileVideo = new AV.File.withURL(currentTS, finalUrl);
-							avFileVideo.save().then(function() {
-								var vclass = AV.Object.extend("video");
-								var videoObj = new vclass();
-								videoObj.set("user_id", uobj);
-								videoObj.set("channel_id", cobj);
-								videoObj.set("image", avFileImage);
-								videoObj.set("video", avFileVideo);
-								videoObj.set("title", $('#title').val());
-								videoObj.set("content", $('#content').val());
-								videoObj.save(null, {
-									success: function (video) {
-										$("#upimage").html("upload successed!");
-										clearInterval();
-										location.href = "video_list.html";
-									},
-									error: function (video, error) {
-										clearInterval();
-										alert('Failed to create new object, with error code: ' + error.description);
-									}
-								});
-							}, function(err) {
-								clearInterval();
-								alert('Failed to create new object, with error code: ' + error.description);
-							});
+							var avQuery = new AV.Query("_File");
+							avQuery.get(objId, {
+								success: function(avFileVideo) {
+									var vclass = AV.Object.extend("video");
+									var videoObj = new vclass();
+									videoObj.set("user_id", uobj);
+									videoObj.set("channel_id", cobj);
+									videoObj.set("image", avFileImage);
+									videoObj.set("video", avFileVideo);
+									videoObj.set("title", $('#title').val());
+									videoObj.set("content", $('#content').val());
+									videoObj.save(null, {
+										success: function(video) {
+											$("#upimage").html("upload successed!")
+											clearInterval();
+											location.href = "video_list.html";
+										}, error: function(video, error) {
+											clearInterval();
+											alert('Failed to generate video record. code:' + error.description);
+							                }});
+								}, error: function(fileVideo, error) {
+									clearInterval();
+									alert('Failed to generate video record. code:' + error.description);
+							}});
 						},function(err){
 							clearInterval();
 							console.log("upload failed. error:" + err);
