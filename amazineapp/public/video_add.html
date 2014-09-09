@@ -368,20 +368,20 @@
 				$("#upimage").html("Uploading(video)....");
 				// get upload token
 				var currentTS = (new Date()).valueOf().toString() + "000";
-		        var xmlhttp = {};
-		        if (window.XMLHttpRequest) {
-		            xmlhttp = new XMLHttpRequest();
-		        } else {
-		            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		        }
+		                var xmlhttp = {};
+		                if (window.XMLHttpRequest) {
+		                    xmlhttp = new XMLHttpRequest();
+		                } else {
+		                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		                }
 				xmlhttp.open("POST", "https://cn.avoscloud.com/1/qiniu");
 				xmlhttp.setRequestHeader("X-AVOSCloud-Application-Id", "vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7");
 				xmlhttp.setRequestHeader("X-AVOSCloud-Application-Key", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
 				xmlhttp.setRequestHeader("Accept", "application/json");
 				xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 				var xhrParams = {};
-				xhrParams["key"] = currentTS + ".mp4";
-				xhrParams["name"]=currentTS + ".mp4";
+				xhrParams["key"] = currentTS;
+				xhrParams["name"]=currentTS;
 				xhrParams["__type"]="File";
 				xmlhttp.send(JSON.stringify(xhrParams));
 				xmlhttp.onreadystatechange = function() {
@@ -398,7 +398,8 @@
 							$("#upimage").html("Generate(videodata)....");
 							var metaData = {};
 							metaData["size"] = fVideoObj.files.length; // TODO: please replace with the really file size
-							var avFileVideo = new AV.File.withURL(currentTS + ".mp4", finalUrl, metaData);
+							console.log("video file size:" + metaData["size"]);
+							var avFileVideo = new AV.File.withURL(currentTS, finalUrl, metaData);
 							avFileVideo.save().then(function() {
 								var vclass = AV.Object.extend("video");
 								var videoObj = new vclass();
