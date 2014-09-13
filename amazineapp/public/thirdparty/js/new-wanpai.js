@@ -29,34 +29,14 @@ $(function() {
   }
 
   var player = videojs('post',{ 'children':{ 'loadingSpinner': false,'controlBar': false}}).ready(function() {
-    // var size;
-    // size = $('.video').width();
-    // this.height(size);
-    // this.width(size);
-    // $('video').height(size);
-    // $('video').width(size);
+    var size;
+    size = $('.video').width();
+    this.height(size*9/16);
+    this.width(size);
+    $('video').height(size*9/16);
+    $('video').width(size);
 
-    this.on("play", function(e) {
-      $('div.play-button').fadeOut();
-    });
-
-    this.on("pause", function(e) {
-      $('div.play-button').fadeIn();
-    });
     $('video')[0].controls = true;
-    // Fix the fuck micromessenger webview
-    // if (micromessenger && android) {
-    //   var once = true;
-    //   this.on("durationchange", function(e){
-    //     $('video')[0].controls = false;
-    //   });
-    //   this.on("playing", function(e) {
-    //     if (once) {
-    //       $('video')[0].controls = true;
-    //     }
-    //     once = false;
-    //   });
-    // }
   });
 
   $('div.play-button').click(function(e){

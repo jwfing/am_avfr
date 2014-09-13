@@ -1,0 +1,414 @@
+@border-bottom-height: 1px;
+@author-color: #F05A5A;
+@author-font-size: 14px;
+@avatar-size: 40px;
+@video-padding: 20px;
+@desc-font-size: 13px;
+@desc-color: #656565;
+@desc-line-height: 17px;
+@timestamp-font-size: 12px;
+@timestamp-color: #B7B7B7;
+@background: #F4F4F5;
+@video-width: 640px;
+@video-height: 360px;
+@video-stats-height: 40px;
+@video-stats-font-size: @desc-font-size;
+@video-stats-color: @timestamp-color;
+@video-stats-padding: 20px;
+@comment-padding-top: 10px;
+@comment-height: 60px - @comment-padding-top - @border-bottom-height;
+@comment-padding-left: @avatar-size + 20px + 14px;
+@play-button-size: 100px;
+@share-height: 30px;
+
+@sidebar-top: 80px;
+@sidebar-left: 65%;
+@sidebar-padding-left: 40px;
+@logo-width: 354px;
+@logo-height: 156px;
+@download-link-width: 148px;
+@download-link-height: 46px;
+@qrcode-margin-top: @download-link-height * 2 + 20 + 10 - @qrcode-height;
+@qrcode-margin-left: 26px;
+@qrcode-width: 174px;
+@qrcode-height: 172px;
+@qrcode-hover-height: 230px;
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: none;
+    outline: none;
+    text-decoration: none;
+}
+
+body {
+    font: 13px/20px STHeiti, Helvetica Neue, Helvetica, sans-serif;
+    background: @background;
+}
+
+.wechat-tips {
+    display:none;
+}
+
+.top-bar {
+    display:none;
+}
+
+.container {
+    padding: 60px 0 90px 0;
+    width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.content {
+    width: 680px;
+    border: solid 1px #DEDEDE;
+    border-radius: 5px;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1001;
+    opacity: 0.5;
+    background-color: #000;
+    overflow: auto;
+    display: none;
+}
+
+// video-stats
+.video-stats {
+    padding-left: @video-stats-padding;
+    padding-right: @video-stats-padding;
+    line-height: @video-stats-height;
+    font-size: @video-stats-font-size;
+    color: @video-stats-color;
+    img {
+        vertical-align: middle;
+    }
+}
+
+div.video {
+    height: @video-height;
+    width: @video-width;
+    position: relative;
+}
+
+div.play-button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: url("http://wanpai-image.qiniudn.com/img/video/play_nor.png") no-repeat;
+    height: @play-button-size;
+    width: @play-button-size;
+    margin: -@play-button-size/2+15px 0 0 -@play-button-size/2;
+    z-index: 1000;
+}
+
+div.play-button:hover {
+    background: url("http://wanpai-image.qiniudn.com/img/video/play_hover.png") no-repeat;
+    cursor: pointer;
+    transition-delay: 0.4s;
+}
+
+div.play-button:active {
+    background: url("http://wanpai-image.qiniudn.com/img/video/play_down.png") no-repeat;
+}
+
+div.video-stats span {
+    padding-right: 14px;
+}
+
+div.video-stats .share{
+    display: inline;
+    float: right;
+    padding-right: 0;
+    cursor: pointer;
+}
+
+div.video-content {
+    background: #FFFFFF;
+    min-height: 550px;
+    box-shadow: 0 0 2px #CECECE;
+    padding: @video-padding @video-padding 14px @video-padding;
+    border-radius: 5px;
+}
+
+div.share {
+    position: relative;
+    height: @share-height;
+    display: none;
+    background: #EBEBEB;
+}
+
+div.video-container {
+}
+
+div.info {
+    position: relative;
+    padding: 10px 0 0 45px;
+    //height: 50px;
+    .username {
+        color: @author-color;
+        font-size: @author-font-size;
+        display: block;
+    }
+    .description {
+        display: block;
+        color: @desc-color;
+        font-size: @desc-font-size;
+        line-height: @desc-line-height;
+        padding-bottom: 2px;
+        word-break: break-word;
+    }
+}
+.timestamp {
+    font-size: @timestamp-font-size;
+    color: @timestamp-color;
+}
+
+
+
+span.avatar {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: @avatar-size;
+    height: @avatar-size;
+    img {
+        width: @avatar-size;
+        height: @avatar-size;
+        position: relative;
+        border-radius: 4px;
+    }
+}
+
+li.comment {
+    span.avatar {
+        top: @comment-padding-top;
+        left: 20px;
+        img {
+            border-radius: 4px;
+        }
+    }
+    .timestamp {
+        position: absolute;
+        top: 8px;
+        right: 20px;
+        line-height: initial;
+    }
+    p.description {
+        color: @desc-color;
+        font-size: @desc-font-size;
+        margin-right: 12px;
+        line-height: @desc-line-height;
+        word-break: break-word;
+        margin: 13px 20px 5px 0;
+    }
+    border-top: @border-bottom-height solid #DEDEDE;
+    min-height: @comment-height;
+    padding: @comment-padding-top 0 0 @comment-padding-left;
+    position: relative;
+}
+
+/* sidebar */
+div.sidebar {
+    position: fixed;
+    left: @sidebar-left;
+    top: @sidebar-top;
+    padding-left: @sidebar-padding-left;
+    .clearfix {
+        *zoom: 1;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        line-height: 0;
+        content: "";
+    }
+    .logo {
+        width: @logo-width;
+        height: @logo-height;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        background: url("http://amazineadmin007.avosapps.com/tagline.png") no-repeat;
+    }
+    .download {
+        float: left;
+    }
+    .iphone {
+        display: block;
+        background: url("http://wanpai-image.qiniudn.com/img/video/links.png") no-repeat;
+        background-position: -152px 0px;
+        width: @download-link-width;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        position: relative;
+        height: @download-link-height;
+    }
+    .iphone:hover {
+        background-position: -152px -50px;
+    }
+    .iphone:active {
+        background-position: -152px -100px;
+    }
+    .android {
+        display: block;
+        background: url("http://wanpai-image.qiniudn.com/img/video/links.png") no-repeat;
+        width: @download-link-width;
+        position: relative;
+        height: @download-link-height;
+    }
+    .android:hover {
+        background-position: 0 -50px;
+    }
+    .android:active {
+        background-position: 0 -100px;
+    }
+    .qr-code {
+        float: left;
+        margin-top: @qrcode-margin-top;
+        margin-left: @qrcode-margin-left;
+        background: url("http://wanpai-image.qiniudn.com/img/video/QRcode_nor.png") no-repeat;
+        width: @qrcode-width;
+        height: @qrcode-height;
+    }
+    .qr-code:hover {
+        background: url("http://wanpai-image.qiniudn.com/img/video/QRcode-hover.png") no-repeat;
+        height: @qrcode-hover-height;
+    }
+}
+
+/*Footer */
+div.footer {
+    padding: 40px 0;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    color: @timestamp-color;
+    .container {
+        padding: 0;
+    }
+}
+
+/* RESPONSIVE */
+@sm-play-button-size: @play-button-size / 2;
+@media (max-width: 767px) {
+    .wechat-tips {
+        width: 100%;
+        height: 80px;
+        background-color: #FFF;
+        position: fixed;
+        top: 0;
+        left: 0;
+        box-shadow: 0 2px 6px rgba(50,50,50,0.25);
+        border-radius: 5px;
+        z-index: 1002;
+        img {
+            height: 70px;
+            float: right;
+        }
+        p {
+            color: #656565;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+    }
+
+    .top-bar {
+        height: 48px;
+        line-height: 48px;
+        background-color: #fff;
+        box-shadow: 0 2px 2px #CECECE;
+        img.icon {
+            margin-top: 5px;
+            margin-left: 10px;
+            width: 102px;
+            height: 38px;
+        }
+        .top-content {
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .download-button {
+            float: right;
+            margin-top: 9px;
+            margin-right: 10px;
+            text-align: center;
+            width: 116px;
+            border-radius: 2px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 20px;
+            color: #fff;
+            background-color: #f05a5a;
+        }
+    }
+    .container {
+        padding-top: 10px;
+        width: 300px;
+        z-index: 1000;
+    }
+    .content {
+        width: 300px;
+    }
+    div.video {
+        height: 158px;
+        width: 280px;
+        z-index: 1000;
+    }
+    div.video-content {
+        min-height: 330px;
+        padding: @video-padding/2 @video-padding/2 7px @video-padding/2;
+        z-index: 1000;
+    }
+
+    div.play-button {
+        height: @sm-play-button-size;
+        width: @sm-play-button-size;
+        margin: -@sm-play-button-size/2 0 0 -@sm-play-button-size/2;
+        background: url("http://wanpai-image.qiniudn.com/img/video/play_nor_sm.png");
+    }
+
+    div.play-button:hover {
+        background: url("http://wanpai-image.qiniudn.com/img/video/play_hover_sm.png") no-repeat;
+    }
+
+    div.play-button:active {
+        background: url("http://wanpai-image.qiniudn.com/img/video/play_down_sm.png") no-repeat;
+    }
+
+    video {
+        height:158px;
+        width: 280px;
+    }
+
+    div.sidebar {
+        display: none;
+    }
+
+    div.top-bar {
+        display: block;
+    }
+
+    div.footer {
+        padding: 20px 0;
+    }
+
+}
