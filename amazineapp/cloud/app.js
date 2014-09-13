@@ -15,13 +15,16 @@ app.get('/hello', function(req, res) {
 app.get('/play/*', function(req, res) {
   var query = new AV.Query("video");
   var objId = String(req.params);
-  console.log("query objectId: " + objId);
+  query.include("user_id");
   query.get(objId, {
   success: function(videoObj) {
       var title = videoObj.get("title");
       var content = videoObj.get("content");
       var video = videoObj.get("video");
-      res.render('video_detail', {videoTitle: title, videoContent: content, videoUrl: video["_url"]})
+      var publisher = videoObj.get("user_id");
+      var pubAvatar = publisher.get("image");
+      var avatar = pubAvatar["_url"];
+      res.render('video_detail', {videoTitle: title, videoContent: content, videoThumbnail:videoObj.get("image")["_url"],videoUrl: video["_url"], videoPublisher:avatar})
   },
   error: function(videoObj, err) {
       console.log(err);
