@@ -184,31 +184,39 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label">画像<span class="required">*</span></label>
+                                            <label class="control-label">iPhone画像<span class="required">*</span></label>
                                             <div class="controls">
                                                 <div class="fileupload fileupload-new" data-provides="fileupload">
-                                                    <div class="fileupload-new thumbnail" style="padding: 0px; max-width: 400px; max-height: 431px; line-height: 20px;">
-                                                        <img id="image" src="assets/img/mockup/avatar.png" alt="" />
+                                                    <div class="fileupload-new thumbnail" style="padding: 0px; width: 10%;line-height: 20px;">
+                                                        <img id="image_iphone" src="assets/img/mockup/no-image.png" alt="" />
                                                     </div>
                                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
                                                     <div>
                                                         <span class="btn btn-file"><span class="fileupload-new">选择</span>
                                                             <span class="fileupload-exists">変更</span>
-                                                            <input id="imagefile" type="file" class="default" accept="image/*" /></span>
+                                                            <input id="imagefile_iphone" type="file" class="default" accept="image/*" /></span>
+                                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">削除</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">iPad画像<span class="required">*</span></label>
+                                            <div class="controls">
+                                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                    <div class="fileupload-new thumbnail" style="padding: 0px; width: 10%;line-height: 20px;">
+                                                        <img id="image_ipad" src="assets/img/mockup/no-image.png" alt="" />
+                                                    </div>
+                                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
+                                                    <div>
+                                                        <span class="btn btn-file"><span class="fileupload-new">选择</span>
+                                                            <span class="fileupload-exists">変更</span>
+                                                            <input id="imagefile_ipad" type="file" class="default" accept="image/*" /></span>
                                                         <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">削除</a>
                                                     </div>
                                                 </div>
                                                 <h4><lable hidden="hidden" id="upimage" style="color:red;">Uploading</lable></h4>
                                             </div>
-                                            
-                                          
-                                         <!--   <div class="control-group">
-                                                <label class="control-label">描述<span class="required">*</span></label>
-                                                <div class="controls">
-                                                    <textarea id="describe" name="descript" class="span6 m-wrap" rows="3"></textarea>
-                                                </div>
-                                            </div>
-                                            -->
                                         </div>
 
                                         <div class="form-actions">
@@ -232,7 +240,7 @@
             <!-- BEGIN FOOTER -->
             <div class="footer">
                 <div class="footer-inner">
-                    2014 &copy; Appvisor stamp by avos cloud.
+	            2014 &copy; Appvisor stamp by avos cloud.
                 </div>
                 <div class="footer-tools">
                     <span class="go-top">
@@ -277,8 +285,8 @@
                     App.setAssetsPath('assets');
                     DateComponents.init();
                     FormValidation.init();
-					AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
 
+		    AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
 
  					var qclass = AV.Object.extend("startup");
 					var query = new AV.Query(qclass);
@@ -290,7 +298,8 @@
 								$("#startdate").val(object.get("statr_date"));
 								$("#enddate").val(object.get("end_date"));
 								$("#type").val(object.get("type"));
-								$('#image').attr("src", object.get("image").thumbnailURL(400, 431));
+								$('#image_iphone').attr("src", object.get("image_iphone").thumbnailURL(400, 225));
+								$('#image_ipad').attr("src", object.get("image_ipad").thumbnailURL(400, 225));
 						  
 								break;
 							}
@@ -320,7 +329,8 @@
 				$('#ok').live('click', function (e) {
 					e.preventDefault();
 					
-					var avFileImage = null;
+					var avFileImage_iphone = null;
+					var avFileImage_ipad = null;
 					var startupObj  = null;
 					
 					$("#upimage").attr("hidden",false);
@@ -339,13 +349,22 @@
 							alert("Error: " + error.code + " " + error.message);
 						}
 					}).then(function() {
-						$("#upimage").html("Uploading(image)");
+						$("#upimage").html("Uploading(iphone image)");
 						
-						var fImageObj = $("#imagefile")[0];
+						var fImageObj = $("#imagefile_iphone")[0];
 						if (fImageObj.files.length > 0) {				
 							var fImage = fImageObj.files[0];
-							avFileImage = new AV.File("image.png", fImage);              
-							return avFileImage.save();
+							avFileImage_iphone = new AV.File("image.png", fImage);              
+							return avFileImage_iphone.save();
+						}
+					}).then(function() {
+						$("#upimage").html("Uploading(ipad image)");
+						
+						var fImageObj = $("#imagefile_ipad")[0];
+						if (fImageObj.files.length > 0) {				
+							var fImage = fImageObj.files[0];
+							avFileImage_ipad = new AV.File("image.png", fImage);              
+							return avFileImage_ipad.save();
 						}
 					}).then(function() {
 						$("#upimage").html("Save(data)");
@@ -354,8 +373,12 @@
 							startupObj = new sclass();
 						}
 						
-						if(avFileImage != null){
-							startupObj.set("image", avFileImage);
+						if(avFileImage_iphone != null){
+							startupObj.set("image_iphone", avFileImage_iphone);
+						}
+						
+						if(avFileImage_ipad != null){
+							startupObj.set("image_ipad", avFileImage_ipad);
 						}
 
 								

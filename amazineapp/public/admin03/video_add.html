@@ -157,35 +157,36 @@
                                         <button class="close" data-dismiss="alert"></button>
                                         您输入的内容不对
                                     </div>
-                                    <div class="control-group">
-                                        <label class="control-label">用户名<span class="required">*</span></label>
-                                        <div class="controls">
-                                            <!--<input id="name" type="text" name="name" data-required="1" class="span6 m-wrap" />-->
-                                            <select id="username" class="span6 m-wrap">
+									<div class="control-group">
+										<label class="control-label">用户名<span class="required">*</span></label>
+										<div class="controls">
+                                            <select name="username" id="username" class="span6 m-wrap select2" data-placeholder="选择用户">
+                                                <option value=""></option>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
+										</div>
+									</div>
+									<div class="control-group">
 										<label class="control-label">分类<span class="required">*</span></label>
 										<div class="controls">
-											<select id="type" class="span6 m-wrap">												
-											</select>
+                                            <select name="type" id="type" class="span6 m-wrap select2" data-placeholder="选择分类">
+                                                <option value=""></option>
+                                            </select>
 										</div>
-                                    </div>
+									</div>
 									
                                     <div class="control-group">
-                                        <label class="control-label">封面文件<span class="required">*</span></label>
+                                        <label class="control-label">封面图片<span class="required">*</span></label>
                                         <div class="control-group">
                                             <div class="controls">
                                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                                     <div class="fileupload-new thumbnail" style="padding: 0px; max-width: 200px; max-height: 200px; line-height: 20px;">
-                                                        <img src="assets/img/mockup/avatar.png" alt="" />
+                                                        <img id="image" src="assets/img/mockup/no-image.png" alt="" />
                                                     </div>
                                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
                                                     <div>
                                                         <span class="btn btn-file"><span class="fileupload-new">选择</span>
                                                             <span class="fileupload-exists">変更</span>
-                                                            <input id="image" name="image" type="file" class="default" accept="image/*" /></span>
+                                                            <input id="imagefile" name="image" type="file" class="default" accept="image/*" /></span>
 
                                                         <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">削除</a>
                                                     </div>
@@ -203,7 +204,7 @@
                                                     <div>
                                                         <span class="btn btn-file"><span class="fileupload-new">选择</span>
                                                             <span class="fileupload-exists">変更</span>
-                                                            <input id="video" type="file" class="default" accept="*" /></span>
+                                                                <input id="videofile" type="file" class="default" accept="video/*" /></span>
                                                         <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">削除</a>
                                                     </div>
                                                 </div>
@@ -221,16 +222,20 @@
 									<div class="control-group">
 										<label class="control-label">描述<span class="required">*</span></label>
 										<div class="controls">
-											<textarea id="content" name="descript" class="span6 m-wrap" rows="3"></textarea>
+                                        	<textarea id="content" name="content" class="span6 m-wrap" rows="3"></textarea>
 											<h4><lable hidden="hidden" id="upimage" style="color:red;">Uploading....</lable></h4>
 										</div>
 									</div>
-									<br />
-									<div class="form-actions">
-										<button id="ok" type="button" class="btn green">确定</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-										<a href="video_list.html">
-										<input type="button" class="btn green" value="返回"></a>
-									</div>
+										<div>
+                                            <div>
+                                               <br />
+                                                <div class="form-actions">
+                                                    <button id="ok" type="button" class="btn green">确定</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+													<a href="video_list.html">
+													<input type="button" class="btn green" value="返回"></a>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </form>
                                 <!-- END FORM-->
                             </div>
@@ -248,7 +253,7 @@
     <!-- BEGIN FOOTER -->
     <div class="footer">
         <div class="footer-inner">
-            2014 &copy; Appvisor stamp by avos cloud.
+	    2014 &copy; Appvisor stamp by avos cloud.
         </div>
         <div class="footer-tools">
             <span class="go-top">
@@ -286,6 +291,7 @@
     <!-- END PAGE LEVEL PLUGINS -->
     <script src="assets/scripts/app.js"></script>
     <script src="assets/scripts/form-validation/video.js"></script>
+    <script src="assets/scripts/form-components/select.js"></script>
     <script src="https://cn.avoscloud.com/scripts/lib/av-0.4.1.min.js"></script>
 	<script type="text/javascript" src="assets/plugins/qiniu/qiniu.js"></script>
     <script>
@@ -293,34 +299,55 @@
             App.init();
             App.setAssetsPath('assets');
             FormValidation.init();
-			AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
-            
-			var uclass = AV.Object.extend("_User");
-			var uquery = new AV.Query(uclass);
-			uquery.find({
-			  success: function(results) {
-				for (var i = 0; i < results.length; i++) {
-					var object = results[i];
-					$("#username").append($("<option value=" +object.id + ">" + object.get('username') + "</option>"));
-				}
-			  },
-			  error: function(error) {
-				alert("Error: " + error.code + " " + error.message);
-			  }
-			});
+			FormComponents.init();
 
-			var cclass = AV.Object.extend("channel");
-			var cquery = new AV.Query(cclass);
-			cquery.find({
-			  success: function(results) {
-				for (var i = 0; i < results.length; i++) {
-					var object = results[i];
-					$("#type").append($("<option value=" +object.id + ">" + object.get('name') + "</option>"));
+	    AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
+            
+			var ucclass = AV.Object.extend("_User");
+			var ucquery = new AV.Query(ucclass);
+			var ucount  = 0;
+			ucquery.count({
+				success: function(count) {
+					ucount = count;
+				},
+				error: function(error) {
 				}
-			  },
-			  error: function(error) {
-				alert("Error: " + error.code + " " + error.message);
-			  }
+			}).then(function() {
+				var rep = ucount / 100;
+				if(ucount % 100)rep++;
+				
+				var uclass = AV.Object.extend("_User");
+				var uquery = new AV.Query(uclass);
+				for (var i = 0; i<rep; i+=100) {
+					uquery.skip(i);
+					uquery.limit(100);
+					uquery.find({
+					  success: function(results) {
+						for (var i = 0; i < results.length; i++) {
+							var object = results[i];
+							$("#username").append($("<option value=" +object.id + ">" + object.get('username') + "</option>"));
+						}
+					  },
+					  error: function(error) {
+						//alert("Error: " + error.code + " " + error.message);
+					  }
+					});
+				}			
+			}).then(function() {
+				var cclass = AV.Object.extend("channel");
+				var cquery = new AV.Query(cclass);
+				cquery.limit(1000);
+				cquery.find({
+				  success: function(results) {
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						$("#type").append($("<option value=" +object.id + ">" + object.get('name') + "</option>"));
+					}
+				  },
+				  error: function(error) {
+					alert("Error: " + error.code + " " + error.message);
+				  }
+				});	
 			});			
 		});
 		
@@ -344,19 +371,19 @@
 			var cobj = AV.Object.createWithoutData("channel", $('#type').val());
 			
 			//save					
-			var fImageObj = $("#image")[0];
+			var fImageObj = $("#imagefile")[0];
 			if (fImageObj.files.length <= 0) {
 				alert("请选择封面图片文件");
 				return;
 			}
 			
-			var fVideoObj = $("#video")[0];						    
+			var fVideoObj = $("#videofile")[0];						    
 			if (fVideoObj.files.length <= 0) {
 				alert("请选择视频文件");
 				return;
 			}
 		   
-		        $("#upimage").html("Uploading(image)");
+		    $("#upimage").html("Uploading(image)");
 			$("#upimage").attr("hidden",false);
 			self.setInterval("clock()", 500);
 			
@@ -368,15 +395,15 @@
 				$("#upimage").html("Uploading(video)....");
 				// get upload token
 				var currentTS = (new Date()).valueOf().toString() + "000";
-		                var xmlhttp = {};
-		                if (window.XMLHttpRequest) {
-		                    xmlhttp = new XMLHttpRequest();
-		                } else {
-		                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		                }
+		        var xmlhttp = {};
+		        if (window.XMLHttpRequest) {
+		            xmlhttp = new XMLHttpRequest();
+		        } else {
+		            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		        }
 				xmlhttp.open("POST", "https://cn.avoscloud.com/1/qiniu");
-				xmlhttp.setRequestHeader("X-AVOSCloud-Application-Id", "vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7");
-				xmlhttp.setRequestHeader("X-AVOSCloud-Application-Key", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
+				xmlhttp.setRequestHeader("X-AVOSCloud-Application-Id", "y8cwz5xanjtclwys0cm6ucb07vrccr8oedicxznhcr9zwbwd");
+				xmlhttp.setRequestHeader("X-AVOSCloud-Application-Key", "bkzhoupdt3mjaze7y9kphdmguyxfjbp5nib9rmjtneyuwrk5");
 				xmlhttp.setRequestHeader("Accept", "application/json");
 				xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 				var xhrParams = {};
@@ -434,37 +461,6 @@
 					console.log("Error: " + e);
 				}, false);
 								
-				//upload video
-				// var fVideo = fVideoObj.files[0];
-				// var avFileVideo = new AV.File("video.mp4", fVideo);
-				//
-				// $("#upimage").html("Uploading(video)");
-				// avFileVideo.save().then(function () {
-				// 	$("#upimage").html("Uploading(vdata)....");
-				// 	var vclass = AV.Object.extend("video");
-				// 	var videoObj = new vclass();
-				//
-				// 	videoObj.set("user_id", uobj);
-				// 	videoObj.set("channel_id", cobj);
-				// 	videoObj.set("image", avFileImage);
-				// 	videoObj.set("video", avFileVideo);
-				// 	videoObj.set("title", $('#title').val());
-				//                 	videoObj.set("content", $('#content').val());
-				//
-				// 	videoObj.save(null, {
-				// 		success: function (video) {
-				// 			clearInterval();
-				// 			location.href = "video_list.html";
-				// 		},
-				// 		error: function (video, error) {
-				// 			clearInterval();
-				// 			alert('Failed to create new object, with error code: ' + error.description);
-				// 		}
-				// 	});
-				// },function(error) {
-				// 	clearInterval();
-				// 	alert('Failed to create new object, with error code: ' + error.description);
-				// });
 			},function(error) {
 				clearInterval();
 				alert('Failed to create new object, with error code: ' + error.description);

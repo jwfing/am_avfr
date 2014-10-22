@@ -157,7 +157,8 @@
 												<tr>
 													<th>ID</th>
 													<th>分类</th>
-													<th>图片</th>
+													<th>iPhone 图片</th>
+													<th>iPad 图片</th>
 													<th>视频</th>
 													<th style="width: 180px;">操作</th>
 												</tr>
@@ -184,7 +185,7 @@
 	<!-- BEGIN FOOTER -->
 	<div class="footer">
 		<div class="footer-inner">
-			2014 &copy; Appvisor stamp by avos cloud.
+	            2014 &copy; Appvisor stamp by avos cloud.
 		</div>
 		<div class="footer-tools">
 			<span class="go-top">
@@ -222,9 +223,10 @@
 		jQuery(document).ready(function() {    
 			App.init();
 			App.setAssetsPath('assets');
-			TableEditable.init("channel","channel_edit.html",4); 
-		    AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
+			TableEditable.init("channel","channel_edit.html",5); 
 		   
+		   
+			AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
 			var chandleObj = AV.Object.extend("channel");
 			var query = new AV.Query(chandleObj);
 			query.find({
@@ -238,10 +240,15 @@
 					if(!name){
 						name = " ";
 					}
-					var imageObj = object.get('image');
-					var image =" ";
-					if(imageObj){
-						image = imageObj.thumbnailURL(100, 100);						
+					var imageObj_iphone = object.get('image_iphone');
+					var image_iphone =" ";
+					if(imageObj_iphone){
+						image_iphone = imageObj_iphone.thumbnailURL(100, 100);						
+					}
+					var imageObj_ipad = object.get('image_ipad');
+					var image_ipad =" ";
+					if(imageObj_ipad){
+						image_ipad = imageObj_ipad.thumbnailURL(100, 100);						
 					}
 					var videoObj = object.get('video');
 					var video =" ";
@@ -249,7 +256,7 @@
 						video = videoObj.url();						
 					}
 					
-				    oTable.fnAddData([object.id, name, "<img name='image' height='100px' width='100px' src='" + image + "'/>", "<video width='180px' height='180px' controls='controls'><source src='" + video + "' type='video/mp4'></video>",
+				    oTable.fnAddData([object.id, name, "<img name='image' height='100px' width='100px' src='" + image_iphone + "'/>", "<img name='image' height='100px' width='100px' src='" + image_ipad + "'/>","<video width='180px' height='180px' controls='controls'><source src='" + video + "' type='video/mp4'></video>",
                         "<a href='javascript:;' class='btn yellow mini edit'><i class='icon-pencil'></i> Edit</a>" + "<a>&nbsp;</a>" +
 						"<a href='javascript:;' class='btn red mini delete'><i class='icon-trash'></i> Delete</a>"
 					]);

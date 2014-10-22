@@ -144,7 +144,7 @@
                         <!-- BEGIN VALIDATION STATES-->
                         <div class="portlet box green">
                             <div class="portlet-title">
-                                <div class="caption"><i class="icon-reorder"></i>新增频道</div>
+                                <div class="caption"><i class="icon-reorder"></i>新增分类</div>
                             </div>
                             <div class="portlet-body form">
                                 <form action="" id="add_form" class="form-horizontal" method="post">
@@ -159,26 +159,46 @@
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label">图片</label>
+                                        <label class="control-label">iPhone 图片</label>
                                         <div class="control-group">
                                             <div class="controls">
                                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                                     <div class="fileupload-new thumbnail" style="padding: 0px; max-width: 200px; max-height: 200px; line-height: 20px;">
-                                                        <img id="image" src="assets/img/mockup/avatar.png" alt="" />
+                                                        <img id="image_iphone" src="assets/img/mockup/no-image.png" alt="" />
                                                     </div>
                                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
                                                     <div>
                                                         <span class="btn btn-file"><span class="fileupload-new">选择</span>
                                                             <span class="fileupload-exists">変更</span>
-                                                            <input id="imagefile" type="file" class="default" accept="image/*" /></span>
+                                                            <input id="imagefile_iphone" type="file" class="default" accept="image/*" /></span>
+                                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">削除</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     </div> 
+                                    <div class="control-group">
+                                        <label class="control-label">iPad 图片</label>
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                    <div class="fileupload-new thumbnail" style="padding: 0px; max-width: 200px; max-height: 200px; line-height: 20px;">
+                                                        <img id="image_ipad" src="assets/img/mockup/no-image.png" alt="" />
+                                                    </div>
+                                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
+                                                    <div>
+                                                        <span class="btn btn-file"><span class="fileupload-new">选择</span>
+                                                            <span class="fileupload-exists">変更</span>
+                                                            <input id="imagefile_ipad" type="file" class="default" accept="image/*" /></span>
                                                         <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">削除</a>
                                                     </div>
                                                 </div>
 
                                             </div>
                                         </div>
-                                        
-                                        <div class="control-group">
+                                     </div> 
+									 
+                                    <div class="control-group">
                                         <label class="control-label">视频</label>
                                         <div class="control-group">
                                             <div class="controls">
@@ -196,15 +216,15 @@
 
                                             </div>
                                         </div>
-                                        
-                                        
-
-                                        <br />
+                                     </div>   
+                                    
+									<div class="control-group">
                                         <div class="form-actions">
-                                            <input id="ok" type="button" class="btn green" value="确定">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            <input id="ok" type="button" class="btn green" value="确定">
 									    <a href="channel_list.html">
                                             <input type="button" class="btn green" value="返回"></a>
                                         </div>
+									</div>
                                 </form>
                                 <!-- END FORM-->
                             </div>
@@ -222,7 +242,7 @@
     <!-- BEGIN FOOTER -->
     <div class="footer">
         <div class="footer-inner">
-            2014 &copy; Appvisor stamp by avos cloud.
+	    2014 &copy; Appvisor stamp by avos cloud.
         </div>
         <div class="footer-tools">
             <span class="go-top">
@@ -275,13 +295,13 @@
             FormValidation.init();
 			AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
 			
-			
 			var chandleObj = AV.Object.extend("channel");
 			var query = new AV.Query(chandleObj);
 			query.get(getObjectId(), {
 				success: function (object) {				 
                     $("#name").val(object.get("name"));
-                    $('#image').attr("src", object.get('image').thumbnailURL(200, 200));
+                    $('#image_iphone').attr("src", object.get('image_iphone').thumbnailURL(200, 200));
+					$('#image_ipad').attr("src", object.get('image_ipad').thumbnailURL(200, 200));
                     //$('#video').val(gameScore.get("video"));
 
 				},error: function (object, error) {
@@ -307,7 +327,8 @@
 
 		$('#ok').live('click', function (e) {
 			
-			var avFileImage = null;
+			var avFileImage_iphone = null;
+			var avFileImage_ipad = null;
 			var avFileVideo = null;
 			var chandleObj  = null;
 			
@@ -318,26 +339,29 @@
 			var query = new AV.Query(chandleObj);
 			query.get(getObjectId(), {
 				success: function (object) {				 
-					var promise = AV.Promise.as();
-					
 					chandleObj = object;
-					
-					return promise;
 				},error: function (object, error) {
 					alert("Error: " + error.code + " " + error.message);
 				}
 			}).then(function() {
-				$("#upimage").html("Uploading(image)");
+				$("#upimage").html("Uploading(iphone image)");
 				
-				var fImageObj = $("#imagefile")[0];
-				if (fImageObj.files.length > 0) {				
-					var fImage = fImageObj.files[0];
-					avFileImage = new AV.File("image.png", fImage);              
-					return avFileImage.save();
+				var fImageObj_iphone = $("#imagefile_iphone")[0];
+				if (fImageObj_iphone.files.length > 0) {				
+					var fImage_iphone = fImageObj_iphone.files[0];
+					avFileImage_iphone = new AV.File("image.png", fImage_iphone);              
+					return avFileImage_iphone.save();
 				}
 			}).then(function() {
-				var promise = AV.Promise.as();
+				$("#upimage").html("Uploading(ipad image)");
 				
+				var fImageObj_ipad = $("#imagefile_ipad")[0];
+				if (fImageObj_ipad.files.length > 0) {				
+					var fImage_ipad = fImageObj_ipad.files[0];
+					avFileImage_ipad = new AV.File("image.png", fImage_ipad);              
+					return avFileImage_ipad.save();
+				}
+			}).then(function() {
 				$("#upimage").html("Uploading(video)");
 				
 				var fVideoObj = $("#videofile")[0];
@@ -352,8 +376,11 @@
 					$("#upimage").attr("hidden",false);
 					alert("objectid does not exist");
 				}else{
-					if(avFileImage != null){
-						chandleObj.set("image", avFileImage);
+					if(avFileImage_iphone != null){
+						chandleObj.set("image_iphone", avFileImage_iphone);
+					}
+					if(avFileImage_ipad != null){
+						chandleObj.set("image_ipad", avFileImage_ipad);
 					}
 					if(avFileVideo != null){
 						chandleObj.set("video", avFileVideo);				

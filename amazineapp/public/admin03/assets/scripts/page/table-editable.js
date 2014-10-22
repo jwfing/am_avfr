@@ -23,11 +23,15 @@
                         "sNext": "Next"
                     }
                 },
-                "aoColumnDefs": [{
-                    'bSortable': false,
-                    'aTargets': [index]
-                }
-                ]
+                "aoColumnDefs": [
+                	{
+	                    'bSortable': false,
+	                    'aTargets': [index]
+                	}
+                ],
+                "aaSorting": [
+					[ 0, "desc" ]
+				],
             });
             $('#sample_editable_1 a.edit').live('click', function (e) {
                 e.preventDefault();
