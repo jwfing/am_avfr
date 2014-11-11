@@ -282,6 +282,8 @@
 			
             var vobj = AV.Object.extend("video");
             var vquery = new AV.Query(vobj);
+	    vquery.descending("createdAt");
+	    vquery.limit(500);
  			vquery.find({
 			    success: function(results) {
 					$("#add_form tbody").html("");				
