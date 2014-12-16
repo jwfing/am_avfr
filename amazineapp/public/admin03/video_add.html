@@ -429,12 +429,19 @@
 							var avQuery = new AV.Query("_File");
 							avQuery.get(objId, {
 								success: function(avFileVideo) {
+									var metaUrl = finalUrl + "?avinfo";
+									xmlhttp.open("GET", metaUrl, false);
+									xmlhttp.send();
+									var jsonRes = JSON.parse(xmlhttp.responseText);
+									var duration = jsonRes.streams[0].duration;
+									console.log(metaUrl + " duration: " + duration);
 									var vclass = AV.Object.extend("video");
 									var videoObj = new vclass();
 									videoObj.set("user_id", uobj);
 									videoObj.set("channel_id", cobj);
 									videoObj.set("image", avFileImage);
 									videoObj.set("video", avFileVideo);
+									videoObj.set("duration", parseFloat(duration));
 									videoObj.set("title", $('#title').val());
 									videoObj.set("content", $('#content').val());
 									videoObj.save(null, {
