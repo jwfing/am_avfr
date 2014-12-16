@@ -434,6 +434,7 @@
 									xmlhttp.send();
 									var jsonRes = JSON.parse(xmlhttp.responseText);
 									var duration = jsonRes.streams[0].duration;
+									var duration_ts = jsonRes.streams[0].duration_ts;
 									console.log(metaUrl + " duration: " + duration);
 									var vclass = AV.Object.extend("video");
 									var videoObj = new vclass();
@@ -442,6 +443,7 @@
 									videoObj.set("image", avFileImage);
 									videoObj.set("video", avFileVideo);
 									videoObj.set("duration", parseFloat(duration));
+									videoObj.set("duration_ts", duration_ts);
 									videoObj.set("title", $('#title').val());
 									videoObj.set("content", $('#content').val());
 									videoObj.save(null, {
