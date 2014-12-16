@@ -189,7 +189,7 @@
     <!-- BEGIN FOOTER -->
     <div class="footer">
         <div class="footer-inner">
-	    2014 &copy; Appvisor stamp by avos cloud.
+            2014 &copy; Appvisor stamp by avos cloud.
         </div>
         <div class="footer-tools">
             <span class="go-top">
@@ -231,7 +231,7 @@
 			TableEditable.init("video","video_edit.html",7); 
 
             //
-	    AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
+            AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
 
 			function addTotable(object,oTable){
 				var user = object.get("user_id");
@@ -265,6 +265,7 @@
 						if(!title){
 							title = " ";
 						}
+						
 						var content = object.get("content");
 						if(!content){
 							content = " ";
@@ -280,22 +281,43 @@
 				});			
 			}
 			
+			function getData(sIndex)
+			{
+	           var vobj = AV.Object.extend("video");
+	            var query = new AV.Query(vobj);
+	            query.skip(sIndex);
+				query.descending("updatedAt");
+	            query.limit(200);
+
+	 			query.find({
+				    success: function(results) {
+						$("#add_form tbody").html("");				
+						var oTable = $('#sample_editable_1').dataTable();
+						
+						for (var i = 0; i < results.length; i++) {					  
+							var object = results[i];
+							addTotable(object,oTable);
+						}
+				    },error: function(error) {
+						alert("Error: " + error.code + " " + error.message);
+					}
+				});
+				
+			}
+			
             var vobj = AV.Object.extend("video");
             var vquery = new AV.Query(vobj);
-	        vquery.descending("createdAt");
-	        vquery.limit(500);
- 			vquery.find({
-			    success: function(results) {
-					$("#add_form tbody").html("");				
-					var oTable = $('#sample_editable_1').dataTable();
-					
-					for (var i = 0; i < results.length; i++) {					  
-						var object = results[i];
-						addTotable(object,oTable);
-					}
-			    },error: function(error) {
-					alert("Error: " + error.code + " " + error.message);
-				}
+		 	vquery.count({
+			  success: function(count) {
+			    
+			    for(var i=0;i<count;i+= 200)
+			    {
+			    	getData(i);
+			    }
+			  },
+			  error: function(error) {
+			    
+			  }
 			});
         });   
     </script>
