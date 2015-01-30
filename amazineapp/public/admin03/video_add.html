@@ -230,7 +230,7 @@
                                             <div>
                                                <br />
                                                 <div class="form-actions">
-                                                    <button id="ok" type="button" class="btn green">确定</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                    <button id="ok" type="button" class="btn green">开始上传</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 													<a href="video_list.html">
 													<input type="button" class="btn green" value="返回"></a>
                                                 </div>
@@ -450,7 +450,7 @@
 										success: function(video) {
 											$("#upimage").html("upload successed!")
 											clearInterval();
-											location.href = "video_list.html";
+//											location.href = "video_list.html";
 										}, error: function(video, error) {
 											clearInterval();
 											alert('Failed to generate video record. code:' + error.description);

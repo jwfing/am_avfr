@@ -147,7 +147,7 @@
                                 <div class="caption"><i class="icon-reorder"></i>上传视频</div>
                             </div>
                             <div class="form-actions" style="margin: auto; clear: both;">
-                                <a href="video_add.html" class="btn yellow">新增内容</a>
+                                <a href="video_add.html" class="btn yellow" target="_blank">新增内容</a>
                             </div>
                             <div class="portlet-body form">
                                 <form action="" id="add_form" class="form-horizontal" method="post">
@@ -287,7 +287,7 @@
 	            var query = new AV.Query(vobj);
 	            query.skip(sIndex);
 				query.descending("updatedAt");
-	            query.limit(500);
+	            query.limit(100);
 
 	 			query.find({
 				    success: function(results) {
@@ -309,8 +309,8 @@
             var vquery = new AV.Query(vobj);
 		 	vquery.count({
 			  success: function(count) {
-			    
-			    for(var i=0;i<count;i+= 500)
+			    if (count>200) count=200;
+			    for(var i=0;i<count;i+= 100)
 			    {
 			    	getData(i);
 			    }
