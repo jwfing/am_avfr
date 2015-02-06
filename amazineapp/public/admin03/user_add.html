@@ -338,6 +338,7 @@
 				user.set("email", $('#email').val());
 				user.set("image", avFileImage);
 				user.set("content", $('#describe').val());
+				user.set("puppeteer", 1);
 				
 				user.signUp(null, {
 					success: function(user) {

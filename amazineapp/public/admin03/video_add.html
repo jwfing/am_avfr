@@ -305,6 +305,7 @@
             
 			var ucclass = AV.Object.extend("_User");
 			var ucquery = new AV.Query(ucclass);
+		        ucquery.equalTo("puppeteer", 1);
 			var ucount  = 0;
 			ucquery.count({
 				success: function(count) {
@@ -318,7 +319,8 @@
 				
 				var uclass = AV.Object.extend("_User");
 				var uquery = new AV.Query(uclass);
-				for (var i = 0; i<rep; i+=100) {
+				uquery.equalTo("puppeteer", 1);
+				for (var i = 0; i<=rep; i+=100) {
 					uquery.skip(i);
 					uquery.limit(100);
 					uquery.find({
