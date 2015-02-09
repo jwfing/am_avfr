@@ -61,8 +61,35 @@
                 var query = new AV.Query(cclass);
                 query.get(aData[0], {
                     success: function (obj) {
+		        var originObj = obj;
                         obj.destroy({
                             success: function (obj) {
+			        if (db == "video") {
+				    var videoFile = originObj.get("video");
+				    var coverFile = originObj.get("image");
+				    if (videoFile) {
+					videoFile.destroy();
+					console.dir("delete video file");
+				    }
+				    if (coverFile) {
+					coverFile.destroy();
+					console.dir("delete cover file");
+				    }
+				} else if (db == "_User") {
+				    var iFile = originObj.get("image");
+				    if (iFile) {
+					iFile.destroy();
+				    }
+				} else if (db == "channel") {
+				    var iphoneImage = originObj.get("image_iphone");
+				    var ipadImage = originObj.get("image_ipad_large");
+				    if (iphoneImage) {
+					    iphoneImage.destroy();
+				    }
+				    if (ipadImage) {
+					    ipadImage.destroy();
+				    }
+				}
                                 oTable.fnDeleteRow(nRow);
                             },error: function (obj, error) {
 								alert("Error: " + error.code + " " + error.message);
