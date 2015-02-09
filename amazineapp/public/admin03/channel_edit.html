@@ -242,7 +242,7 @@
     <!-- BEGIN FOOTER -->
     <div class="footer">
         <div class="footer-inner">
-	    2014 &copy; Appvisor stamp by avos cloud.
+            2014 &copy; amazine by mikosoft.
         </div>
         <div class="footer-tools">
             <span class="go-top">
@@ -293,7 +293,7 @@
             App.init();
             App.setAssetsPath('assets');
             FormValidation.init();
-			AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
+            AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
 			
 			var chandleObj = AV.Object.extend("channel");
 			var query = new AV.Query(chandleObj);
@@ -301,7 +301,7 @@
 				success: function (object) {				 
                     $("#name").val(object.get("name"));
                     $('#image_iphone').attr("src", object.get('image_iphone').thumbnailURL(200, 200));
-					$('#image_ipad').attr("src", object.get('image_ipad').thumbnailURL(200, 200));
+					$('#image_ipad').attr("src", object.get('image_ipad_large').thumbnailURL(200, 200));
                     //$('#video').val(gameScore.get("video"));
 
 				},error: function (object, error) {
@@ -380,7 +380,7 @@
 						chandleObj.set("image_iphone", avFileImage_iphone);
 					}
 					if(avFileImage_ipad != null){
-						chandleObj.set("image_ipad", avFileImage_ipad);
+						chandleObj.set("image_ipad_large", avFileImage_ipad);
 					}
 					if(avFileVideo != null){
 						chandleObj.set("video", avFileVideo);				

@@ -225,7 +225,7 @@
     <!-- BEGIN FOOTER -->
     <div class="footer">
         <div class="footer-inner">
-	    2014 &copy; Appvisor stamp by avos cloud.
+            2014 &copy; amazine by mikosoft.
         </div>
         <div class="footer-tools">
             <span class="go-top">
@@ -264,8 +264,9 @@
         jQuery(document).ready(function () {
             App.init();
             App.setAssetsPath('assets');
-	    AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
+            AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
             var GameScore = AV.Object.extend("dt_main");
+
             var query = new AV.Query(GameScore);
             query.get("53e89b01e4b056c0f68b839d", {
                 success: function (gameScore) {

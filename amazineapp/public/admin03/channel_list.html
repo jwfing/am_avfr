@@ -166,6 +166,27 @@
 											<tbody>
 											</tbody>
 										</table>
+										<!--  page start  -->
+                                        <div class="row-fluid">
+                                            <div class="span6">
+                                                <div class="dataTables_info" id="sample_editable_1_info"></div>
+                                                <input type="hidden" id="nowPage" value="1">
+                                                <input type="hidden" id="count" value="0">
+                                            </div>
+                                            <div class="span6">
+                                                <div class="dataTables_paginate paging_bootstrap pagination">
+                                                    <ul>
+                                                        <li class="prev disabled">
+                                                            <a id="pagePrev" href="#">← <span class="hidden-480">Prev</span></a>
+                                                        </li>
+                                                        <li class="next">
+                                                            <a id="pageNext" href="#"><span class="hidden-480">Next</span> → </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--  page end  -->
 									</div>
 								  </table>                  
 								</form>
@@ -185,7 +206,7 @@
 	<!-- BEGIN FOOTER -->
 	<div class="footer">
 		<div class="footer-inner">
-	            2014 &copy; Appvisor stamp by avos cloud.
+			2014 &copy; amazine by mikosoft.
 		</div>
 		<div class="footer-tools">
 			<span class="go-top">
@@ -226,48 +247,137 @@
 			TableEditable.init("channel","channel_edit.html",5); 
 		   
 		   
-			AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
-			var chandleObj = AV.Object.extend("channel");
-			var query = new AV.Query(chandleObj);
-			query.find({
-			  success: function(results) {
-				$("#add_form tbody").html("");
-				var oTable = $('#sample_editable_1').dataTable();
-				for (var i = 0; i < results.length; i++) {
-					var object = results[i];
+		    AV.initialize("vu6ov7paogitnomg6scs6o7wcetzv0saog2sn129rgp2aun7", "w02berdnt9uoztfrm3m8cnyvfve3iw92gryq2j4ujp1nwu0g");
+		    function getData(count)
+			{
+				var chandleObj = AV.Object.extend("channel");
+				var query = new AV.Query(chandleObj);
+				query.ascending("name");
+	            
 
-					var name = object.get("name");
-					if(!name){
-						name = " ";
+	            var nowPageNum = $('#nowPage').attr('value');
+                var maxPageNum = Math.ceil(count/10);
+                $('#sample_editable_1_info').empty();
+
+                if(nowPageNum==1){
+                    query.skip(0);
+                    query.limit(10);
+                    var scount = 0;
+                    var ecount = 10;
+                    
+                    if(count > 0) scount = 1;
+                    if(count < 10)ecount = count;
+                    
+                    $('#sample_editable_1_info').append(count+" 条中 第" + scount + " 条 〜 第" + ecount + " 条");
+                }else if(nowPageNum>=2 && nowPageNum<=(maxPageNum-1)){
+                    var pageNum=(nowPageNum-1)*10;
+                    query.skip(pageNum);
+                    query.limit(10);
+                    $('#sample_editable_1_info').append(count+" 条中 第" + (pageNum+1) + " 条 〜 第" + (nowPageNum*10) + " 条");
+                }else if(nowPageNum==maxPageNum){
+                    var pageNum=(nowPageNum-1)*10;
+                    query.skip(pageNum);
+                    query.limit(count-pageNum);
+                    $('#sample_editable_1_info').append(count+" 条中 第" + (pageNum+1) + " 条 〜 第" + count + " 条");
+                }
+				
+				query.find({
+				  success: function(results) {
+					$("#add_form tbody").html("");
+					var oTable = $('#sample_editable_1').dataTable();
+					oTable.fnClearTable();
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+
+						var name = object.get("name");
+						if(!name){
+							name = " ";
+						}
+						var imageObj_iphone = object.get('image_iphone');
+						var image_iphone =" ";
+						if(imageObj_iphone){
+							image_iphone = imageObj_iphone.thumbnailURL(100, 100);						
+						}
+						var imageObj_ipad = object.get('image_ipad_large');
+						var image_ipad =" ";
+						if(imageObj_ipad){
+							image_ipad = imageObj_ipad.thumbnailURL(100, 100);						
+						}
+						var videoObj = object.get('video');
+						var video =" ";
+						if(videoObj){
+							video = videoObj.url();						
+						}
+						
+						oTable.fnAddData([object.id, name, "<img name='image' height='100px' width='100px' src='" + image_iphone + "'/>", "<img name='image' height='100px' width='100px' src='" + image_ipad + "'/>","<video width='180px' height='180px' controls='controls'><source src='" + video + "' type='video/mp4'></video>",
+							"<a href='javascript:;' class='btn yellow mini edit'><i class='icon-pencil'></i> Edit</a>" + "<a>&nbsp;</a>" +
+							"<a href='javascript:;' class='btn red mini delete'><i class='icon-trash'></i> Delete</a>"
+						]);
 					}
-					var imageObj_iphone = object.get('image_iphone');
-					var image_iphone =" ";
-					if(imageObj_iphone){
-						image_iphone = imageObj_iphone.thumbnailURL(100, 100);						
-					}
-					var imageObj_ipad = object.get('image_ipad');
-					var image_ipad =" ";
-					if(imageObj_ipad){
-						image_ipad = imageObj_ipad.thumbnailURL(100, 100);						
-					}
-					var videoObj = object.get('video');
-					var video =" ";
-					if(videoObj){
-						video = videoObj.url();						
-					}
-					
-				    oTable.fnAddData([object.id, name, "<img name='image' height='100px' width='100px' src='" + image_iphone + "'/>", "<img name='image' height='100px' width='100px' src='" + image_ipad + "'/>","<video width='180px' height='180px' controls='controls'><source src='" + video + "' type='video/mp4'></video>",
-                        "<a href='javascript:;' class='btn yellow mini edit'><i class='icon-pencil'></i> Edit</a>" + "<a>&nbsp;</a>" +
-						"<a href='javascript:;' class='btn red mini delete'><i class='icon-trash'></i> Delete</a>"
-					]);
-				}
+				  },
+				  error: function(error) {
+					alert("Error: " + error.code + " " + error.message);
+				  }
+				});
+			}
+			
+            var vobj = AV.Object.extend("channel");
+            var vquery = new AV.Query(vobj);
+		 	vquery.count({
+			  success: function(count) {
+			    getData(count);
+			    if(count<=10){
+			    	$('.next').addClass('disabled');
+			    }
+                $('#count').attr('value',count);
 			  },
 			  error: function(error) {
-				alert("Error: " + error.code + " " + error.message);
+			    
 			  }
 			});
-          
-            
+
+			$('#pagePrev').click(function(){
+                var num=$('#nowPage').attr('value');
+                var count = $('#count').attr('value');
+                var maxnum = Math.ceil(count/10);
+                if(num>1){
+                    num--;
+                    $('#nowPage').attr('value',num);
+                    if(num==1){
+                        $('.next').removeClass('disabled');
+                        $('.prev').addClass('disabled');
+                    }else if(num>1 && num<maxnum){
+                        $('.prev').removeClass('disabled');
+                        $('.next').removeClass('disabled');
+                    }else if(num==maxnum){
+                        $('.prev').removeClass('disabled');
+                        $('.next').addClass('disabled');
+                    }
+                    getData(count);
+                }
+                
+            });
+            $('#pageNext').click(function(){
+                var num=$('#nowPage').attr('value');
+                var count = $('#count').attr('value');
+                var maxnum = Math.ceil(count/10);
+                if(num<maxnum){
+                    num++;
+                    $('#nowPage').attr('value',num);
+                    if(num==1){
+                        $('.next').removeClass('disabled');
+                        $('.prev').addClass('disabled');
+                    }else if(num>1 && num<maxnum){
+                        $('.prev').removeClass('disabled');
+                        $('.next').removeClass('disabled');
+                    }else if(num==maxnum){
+                        $('.prev').removeClass('disabled');
+                        $('.next').addClass('disabled');
+                    }
+                    getData(count);
+                }
+            });
+           
 		});
 	</script>
 	<!-- END JAVASCRIPTS -->

@@ -493,6 +493,15 @@
 							var avQuery = new AV.Query("_File");
 							avQuery.get(objId, {
 								success: function(avFileVideo1) {
+                                    var metaUrl = finalUrl + "?avinfo";
+                                    xmlhttp.open("GET", metaUrl, false);
+                                    xmlhttp.send();
+                                    var jsonRes = JSON.parse(xmlhttp.responseText);
+                                    var duration = jsonRes.streams[0].duration;
+                                    var duration_ts = jsonRes.streams[0].duration_ts;
+                                    console.log(metaUrl + " duration: " + duration);
+                                    videoObj.set("duration", parseFloat(duration));
+                                    videoObj.set("duration_ts", duration_ts);
 									avFileVideo = avFileVideo1;
 									promise.resolve("OK");
 								}, error: function(fileVideo, error) {

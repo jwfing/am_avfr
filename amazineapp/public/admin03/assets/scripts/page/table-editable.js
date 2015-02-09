@@ -23,6 +23,10 @@
                         "sNext": "Next"
                     }
                 },
+                "bSort":false,
+                "bFilter":false,
+                "bPaginate":false,
+                "bInfo":false,
                 "aoColumnDefs": [
                 	{
 	                    'bSortable': false,
